@@ -10,7 +10,14 @@ uri = "mongodb+srv://arturmyhajlyuk:Dr0tF6nWycfkMDQc@cluster0.rplkpzm.mongodb.ne
 # Create a new client and connect to the server
 client = MongoClient(uri, tlsCAFile=certifi.where())
 
-db = client.test
+try:
+    client.admin.command('ping')
+    db = client.test
+    print("You successfully connected to MongoDB!")
+except Exception as e:
+    print(e)
+
+
 
 def find_all():
     print("All cats:")

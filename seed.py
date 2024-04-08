@@ -27,7 +27,7 @@ def generate_fake_data(number_users, number_statuses, number_tasks) -> tuple:
     for status in default_statuses:
         statuses.append(status)
 
-# Та number_post набір посад
+# Та number_tasks набір завдань
     for _ in range(number_tasks):
         fake_title.append(fake_data.word())
         fake_description.append(fake_data.text())
@@ -89,7 +89,7 @@ def insert_data_to_db(users, statuses, tasks) -> None:
 
     except (Exception, psycopg2.Error) as commit_error:
         print("Помилка при виконанні запитів:", commit_error)
-        connection.rollback() # Відкатити зміни у випадку помилки
+        connection.rollback() # Відкотити зміни у випадку помилки
 
 if __name__ == "__main__":
     users, statuses, tasks = prepare_data(*generate_fake_data(NUMBER_USERS, NUMBER_STATUSES, NUMBER_TASKS))
